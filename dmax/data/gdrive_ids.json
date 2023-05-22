@@ -1,0 +1,63 @@
+{
+  "motion_deblurring": {
+    "RealBlurR": {
+      "train": "1glgeWXCy7Y0qWDc0MXBTUlZYJf8984hS",
+      "restored": "1ta02anaT1-Ga-tEl8Aja8OJ_Vf-5VYL9"
+    },
+    "RealBlurJ": {
+      "train": "1Rb1DhhXmX7IXfilQ-zL9aGjQfAAvQTrW",
+      "restored": "14opC4F9N3bvl_OWJQNuuHt1X1OusCCeH"
+    },
+    "HIDE": {
+      "train": "1XRomKYJF1H92g1EuD06pCQe4o6HlwB7A",
+      "restored": "1A3P9Tz8Ue2WLgkogQZIlvBpRM4gviG7C"
+    },
+    "GoPro": {
+      "train": "1zgALzrLCC_tcXKu_iHQTHukKUVT1aodI",
+      "test": "1k6DTSHu4saUgrGTYkkZXTptILyG9RRll",
+      "restored": "1unfZTcGHmHn0bC3Pj1SjIR008syztv08"
+    }
+  },
+  "single_image_defocus_deblurring": {
+    "dpdd": {
+      "train": "1bl5i1cDQNvkgVA_x37QdhvvFk1R80kfe",
+      "validation": "1KRAmBzluu-IG9-BOsuakB5rjY5_f-kiR",
+      "test": "1dDWUQ_D93XGtcywoUcZE1HOXCV4EuLyw",
+      "restored": "112HMdr5ajEV5xi-URnuC58rclxC80FDb"
+    }
+  },
+  "deraining": {
+    "rain13k": {
+      "train": "14BidJeG4nSNuFNFDf99K-7eErCq4i47t",
+      "test": "1P_-RAvltEoEhfT-9GrWRdpEi6NSswTs8",
+      "restored": "155AXaQRS4wQM-61Ecuu1S1RTRYQRadcc"
+    }
+  },
+  "real_denoising": {
+    "DND": {
+      "test": "1CYCDhaVxYYcXhSfEVDUwkvJDtGxeQ10G",
+      "restored": "1CsEiN6R0hlmEoSTyy48nnhfF06P5aRR7"
+    },
+    "SIDD": {
+      "train": "1UHjWZzLPGweA9ZczmV8lFSRcIxqiOVJw",
+      "validation": "1Fw6Ey1R-nCHN9WEpxv0MnMqxij-ECQYJ",
+      "test": "11vfqV-lqousZTuAit1Qkqghiv_taY0KZ",
+      "restored": "1CsEiN6R0hlmEoSTyy48nnhfF06P5aRR7"
+    }
+  },
+  "general-purpose": {
+    "WaterlooED": {"train": "19_mCE_GXfmE5yYsm-HEzuZQqmwMjPpJr"},
+    "DIV2K": {"train": "13wLWWXvFkuYYVZMMAYiMVdSA7iVEf2fM"},
+    "Flickr2K": {"train": "1J8xjFCrVzeYccD-LF08H7HiIsmi8l2Wn"},
+    "BSD400": {"test": "1idKFDkAHJGAFDn1OyXZxsTbOSBx9GS8N"},
+    "BSDS100": {"test":  "1-Qr2vcE8iXfTta0pm9uvuLrRD84s7Rxd"},
+    "BSDS200": {"test": "1EsRzyBIq1aLcn2e_Lxvxdxb5fMWQV5UP"},
+    "b100": {"test": "1-Qr2vcE8iXfTta0pm9uvuLrRD84s7Rxd"},
+    "general100": {"test": "1CnxDpwc2VUymZbAu4hHvZbl4LE-pWspg"},
+    "urban100": {"test": "1CnxDpwc2VUymZbAu4hHvZbl4LE-pWspg"},
+    "set14": {"test": "1YC6l1o8qBtkU4LUtBQbOZ5sIM-lZf7YO"},
+    "set5": {"test": "1DnHLNkcpl0wLznwAGW6CcrMMJOZY8ILz"},
+    "manga109": {"test": "13NsteslsUnPj6_Z4wKJg9J1i3eXokCyC"},
+    "Manga109": {"test": "13NsteslsUnPj6_Z4wKJg9J1i3eXokCyC"}
+  }
+}
