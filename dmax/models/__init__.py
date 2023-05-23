@@ -54,7 +54,7 @@ SwinIRTask = Literal[
 ]
 
 Task = Union[RestormerTask, Swin2SRTask, SwinIRTask]
-Model = Literal["Restormer", "Swin2SR", "SwinIR", "ESRGAN", "NLM"]
+Model = Literal["Restormer", "Swin2SR", "SwinIR", "ESRGAN", "NLM", "Identity"]
 
 
 def weights(release_url: str, release_name: str, state_key: str = 'params', verb: bool = False):
@@ -223,3 +223,7 @@ def esrgan(task: RestormerTask, pretrained: bool = True) -> registery.ESRGAN:
 
 def nlm(task: Task, pretrained: bool = True) -> registery.NLM:
     return model(task, "NLM", pretrained=pretrained)
+
+
+def identity(task: Task, pretrained: bool = True):
+    return torch.nn.Identity()

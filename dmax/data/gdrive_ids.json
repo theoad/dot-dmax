@@ -59,5 +59,8 @@
     "set5": {"test": "1DnHLNkcpl0wLznwAGW6CcrMMJOZY8ILz"},
     "manga109": {"test": "13NsteslsUnPj6_Z4wKJg9J1i3eXokCyC"},
     "Manga109": {"test": "13NsteslsUnPj6_Z4wKJg9J1i3eXokCyC"}
+  },
+  "noisy_sr": {
+      "ddrm_classical_sr_4_dn_25": {"restored": "1KO0AHkyexdAYdW0v2NJR9R9fQ8PSRfBd"}
   }
 }

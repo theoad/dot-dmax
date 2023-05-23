@@ -28,6 +28,7 @@ warnings.filterwarnings('ignore', category=UserWarning, message="The parameter '
 warnings.filterwarnings('ignore', category=UserWarning, message="torch.meshgrid")
 warnings.filterwarnings('ignore', category=UserWarning, message="Metric `InceptionScore`")
 warnings.filterwarnings('ignore', category=UserWarning, message="Metric `Kernel Inception Distance`")
+warnings.filterwarnings('ignore', category=FutureWarning, message="Accessing config attribute `block_out_channels`")
 
 
 @torch.inference_mode()
@@ -87,7 +88,7 @@ def latent_dmax(
     def dmax_field(alpha: float): return f"x{str(alpha).replace('.', '').replace('-', '')}" + ("n" if alpha < 0 else "")
 
     # we cache the dmax object to avoid computing the real statistics twice
-    output = join("output", model.lower(), task.lower() + "_res-" + str(train_resolution), exp_name + "ema")
+    output = join("output", model.lower(), task.lower() + "_res-" + str(train_resolution), exp_name)
     dmax_cache = join(output, 'dmax.pth')
     os.makedirs(output, exist_ok=True)
 
