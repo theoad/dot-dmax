@@ -145,15 +145,17 @@ optional arguments:
 
 ### Reproducing results
 ```bash
-python main.py ESRGAN classical_sr-4                        # ESRGAN    (SISRx4)
-python main.py SwinIR classical_sr-4                        # SwinIR    (SISRx4)
-python main.py SwinIR jpeg_car-10                           # SwinIR    (JPEGq10)
-python main.py Restormer gaussian_color_denoising_sigma50   # Restormer (AWGNs50)
-python main.py nlm color_dn-50                              # NLM       (AWGNs50)
-
-python main.py Swin2SR compressed_sr-4 \                    # Swin2SR   (SISRx4 + JPEGq10)
+python main.py ESRGAN classical_sr-4                                 # ESRGAN    (SISRx4)
+python main.py SwinIR classical_sr-4                                 # SwinIR    (SISRx4)
+python main.py SwinIR jpeg_car-10                                    # SwinIR    (JPEGq10)
+python main.py Restormer gaussian_color_denoising_sigma50            # Restormer (AWGNs50)
+python main.py nlm color_dn-50                                       # NLM       (AWGNs50)
+         
+python main.py Swin2SR compressed_sr-4 \                             # Swin2SR   (SISRx4 + JPEGq10)
  --natural_image_set ["compressed_sr_swin2sr"] \
  --degraded_set ["compressed_sr_swin2sr"] \
  --quantitative_set ["compressed_sr_swin2sr"] \
  --qualitative_set ["compressed_sr_swin2sr"]
+
+python precomputed_results.py ddrm classical_sr_4_dn_25 imagenet-1k  # DDRM      (SISRx4 + AWGNs25)
 ```
