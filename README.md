@@ -18,7 +18,9 @@ cd dmax
 
 ## Usage
 Example of our algorithm applied to the [SwinIR](https://github.com/JingyunLiang/SwinIR) model for SISRx4.
-```python
+
+NB: This is a simplified example. For the full algorithm implementation, see `dmax/main.py` and [Reproducing results](#Reproducing-results).
+```
 from PIL import Image
 
 import torch
