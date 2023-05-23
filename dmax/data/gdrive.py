@@ -15,9 +15,9 @@ os.makedirs(DATASET_CACHE, exist_ok=True)
 __all__ = ["DATASET_CACHE", "init", "available_datasets", "url", "download"]
 
 
-def init():
+def init(mode: Literal["ro", "rw"] = "ro"):
     """initialize the resource for interacting with Google Drive API."""
-    service = build_service()
+    service = build_service(mode=mode)
     return service
 
 

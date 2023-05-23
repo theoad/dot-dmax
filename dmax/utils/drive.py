@@ -37,6 +37,11 @@ def build_service(mode="ro"):
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
+            if not os.path.exists('../credentials.json'):
+                raise FileNotFoundError(
+                    "`credentials.json` not found. Make sure to rename the downloaded JSON file `client_secret[...]json` to `credentials.json`"
+                    " and to run python `data/gdrive.py init` under the dot-dmax/dmax directory, on a computed with a display."
+                )
             flow = InstalledAppFlow.from_client_secrets_file('../credentials.json', SCOPES[mode])
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run

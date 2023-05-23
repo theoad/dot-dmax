@@ -4,6 +4,7 @@ from typing import Union, Literal, Optional, Tuple, Callable
 from PIL import Image
 from datetime import datetime
 
+import torch
 from torch.utils.data import Dataset, ConcatDataset, Subset, random_split, DataLoader
 from torchvision.datasets.folder import IMG_EXTENSIONS
 from torchvision.datasets import ImageNet
@@ -66,7 +67,8 @@ def dataset(
     if '-' in dataset_name:
         dataset_name, split = dataset_name.split('-')
     if "imagenet" in dataset_name.lower():
-        return ImageNetNoLabel("~/data/ImageNet", split="val" if split == "val" else split, transform=transform),
+        root = os.environ.get('imagenet_path', "~/data/ImageNet")
+        return ImageNetNoLabel(root, split="val" if split == "val" else split, transform=transform),
     elif "set" in dataset_name.lower():
         subfolder = subfolder or "original"
 

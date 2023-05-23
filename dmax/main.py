@@ -103,16 +103,11 @@ def latent_dmax(
     device = accelerator.device
     pbar = pbar and accelerator.is_local_main_process
     dl_kwargs = dict(resolution=train_resolution, return_dict=False)
-    kid_subset = 100 if "compressed_sr_swin2sr" in quantitative_set else 1000
 
     model = getattr(models, model.lower())(task, pretrained=True).to(device)
     dmax = LatentW2(
         vae, block_size, kernel_size, sigma,
         shared=shared, resolution=train_resolution, eps=sensitivity, store_features=store_features
-    ).to(device)
-    metrics = torch.nn.ModuleDict(
-        {k: MetricCollection([PSNR(), SSIM(), LPIPS(), FID(), IS(), KID(subset_size=kid_subset)])
-         for k in ["x", "xe", "y", "x*"] + [dmax_field(alpha) for alpha in pd_tradeoff_pts]}
     ).to(device)
 
     if exists(dmax_cache):
@@ -148,7 +143,14 @@ def latent_dmax(
 
     # compute quantitative performance on the quantitative image set
     val_dl = data.datalaoder(task, quantitative_set, max_quantitative_samples, split=None, **dl_kwargs)
+    total_samples = len(val_dl) * val_dl.batch_size
     val_dl = accelerator.prepare_data_loader(val_dl)
+
+    metrics = torch.nn.ModuleDict(
+        {k: MetricCollection([PSNR(), SSIM(), LPIPS(), FID(), IS(), KID(subset_size=min(1000, total_samples))])
+         for k in ["x", "xe", "y", "x*"] + [dmax_field(alpha) for alpha in pd_tradeoff_pts]}
+    ).to(device)
+
     for y, x in tqdm(val_dl, f"Computing {quantitative_set} performance", disable=not pbar):
         x_star = model(y)
         metrics["x"].update(x, x)
@@ -184,7 +186,7 @@ def latent_dmax(
             x = x[..., :x_star.size(-2), :x_star.size(-1)]
             x_hat0 = dmax.transport(x_star, zero_shot=degraded_set is None, pg_star=0.)
             x_hat0 = x_hat0[..., :x.size(-2), :x.size(-1)]
-            x_hat05 = x_hat0 * 0.5 + x_star * 0.5
+            x_hat07 = x_hat0 * 0.3 + x_star * 0.7
             xe = dmax.decode(dmax.encode(x))
             collage = (resize(y, x.shape[-2:]), x_star, x_hat0, x)
 
@@ -193,7 +195,7 @@ def latent_dmax(
             save_image(y, join(out_path, 'y.png'))
             save_image(x_star, join(out_path, 'x_star.png'))
             save_image(x_hat0, join(out_path, 'x_hat00.png'))
-            save_image(x_hat05, join(out_path, 'x_hat05.png'))
+            save_image(x_hat07, join(out_path, 'x_hat07.png'))
             save_image(xe, join(out_path, 'xe.png'))
             save_image(torch.cat(collage, dim=-1), join(out_path, 'collage.png'), nrow=1, padding=0,)
             i += 1

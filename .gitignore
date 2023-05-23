@@ -10,3 +10,4 @@ dmax/__pycache__/
 .idea
 assets/.DS_Store
 dmax/.DS_Store
+dmax/output
