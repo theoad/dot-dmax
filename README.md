@@ -20,7 +20,7 @@ pip install -e .
 Example of our algorithm applied to the [SwinIR](https://github.com/JingyunLiang/SwinIR) model for SISRx4.
 
 NB: This is a simplified example. For the full algorithm implementation, see `dmax/main.py` and [Reproducing results](#Reproducing-results).
-```
+```python
 from PIL import Image
 
 import torch
@@ -105,7 +105,7 @@ python main.py ESRGAN classical_sr-4                                 # ESRGAN   
 python main.py SwinIR classical_sr-4                                 # SwinIR    (SISRx4)
 python main.py SwinIR jpeg_car-10                                    # SwinIR    (JPEGq10)
 python main.py Restormer gaussian_color_denoising_sigma50            # Restormer (AWGNs50)
-python main.py nlm color_dn-50                                       # NLM       (AWGNs50)
+python main.py NLM color_dn-50                                       # NLM       (AWGNs50)
          
 python main.py Swin2SR compressed_sr-4 \                             # Swin2SR   (SISRx4 + JPEGq10)
  --natural_image_set ["compressed_sr_swin2sr"] \
@@ -113,5 +113,5 @@ python main.py Swin2SR compressed_sr-4 \                             # Swin2SR  
  --quantitative_set ["compressed_sr_swin2sr"] \
  --qualitative_set ["compressed_sr_swin2sr"]
 
-python precomputed_results.py ddrm classical_sr_4_dn_25 imagenet-1k  # DDRM      (SISRx4 + AWGNs25)
+python precomputed_results.py DDRM classical_sr_4_dn_25 imagenet-1k  # DDRM      (SISRx4 + AWGNs25)
 ```
