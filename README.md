@@ -92,18 +92,18 @@ export imagenet_path=~/data/ImageNet  # replace with your path
 ### Reproducing results
 \[Optional\]: see [Hardware Setup](#Hardware-Setup) for distributed commands
 ```bash
-cd dmax                # we must run main.py under the source directory
-python main.py --help  # displays all optional arguments
+cd dmax                                                              # we must run main.py under the source directory
+python main.py --help                                                # displays all optional arguments
 ```
 ```bash
-# export imagenet_path=~/data/ImageNet
-# export batch_size=10
-# export num_workers=10
+# export imagenet_path=~/data/ImageNet                               # ---> replace with your path
+# export batch_size=10                                               # ---> replace with you batch size
+# export num_workers=10                                              # ---> replace with your number of workers
 # NB: Replace `python` with `accelerate launch` for distributed run
 
 python main.py ESRGAN classical_sr-4                                 # ESRGAN    (SISRx4)
 python main.py SwinIR classical_sr-4                                 # SwinIR    (SISRx4)
-python main.py SwinIR jpeg_car-10                   # SwinIR    (JPEGq10)
+python main.py SwinIR jpeg_car-10                                    # SwinIR    (JPEGq10)
 python main.py Restormer gaussian_color_denoising_sigma50            # Restormer (AWGNs50)
 python precomputed_results.py DDRM classical_sr_4_dn_25 imagenet-1k  # DDRM      (SISRx4 + AWGNs25)
 
