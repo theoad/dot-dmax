@@ -47,6 +47,7 @@ for _ in range(100):  # unpaired updates
     dmax.update(x_star, distribution="source")  # update model statistics
 
 w2 = dmax.compute()  # compute the latent transport operator & W2 distance
+print(f"Latent w2 distance: {w2.cpu().item():.2f}")
 
 x = to_tensor(Image.open("../assets/baboon.png")).to(device).unsqueeze(0) 
 y = resize(x, (x.size(-2)//4, x.size(-1)//4), antialias=True)
@@ -56,7 +57,6 @@ xhat_0 = dmax.transport(x_star) # enhance new images
 collage = torch.cat([resize(y, x.shape[-2:]), x_star, xhat_0, x], dim=-1).to(device)
 save_image(collage, "demo.png", nrow=1, padding=0)
 ```
-
 ## Paper Results
 ### PyDrive-API
 Our algorithm enhances existing methods (we tested [SwinIR](https://github.com/JingyunLiang/SwinIR), [Swin2SR](https://github.com/mv-lab/swin2sr), [Restormer](https://github.com/swz30/Restormer), [ESRGAN](https://github.com/xinntao/ESRGAN) and [DDRM](https://github.com/bahjat-kawar/ddrm)).
@@ -96,22 +96,26 @@ cd dmax                # we must run main.py under the source directory
 python main.py --help  # displays all optional arguments
 ```
 ```bash
-# export imagenet_path=<path/to/imagenet> (default: ~/data/ImageNet)
-# export batch_size=...                   (default: 10)
-# export num_workers=...                  (default: 10)
+# export imagenet_path=~/data/ImageNet
+# export batch_size=10
+# export num_workers=10
 # NB: Replace `python` with `accelerate launch` for distributed run
 
 python main.py ESRGAN classical_sr-4                                 # ESRGAN    (SISRx4)
 python main.py SwinIR classical_sr-4                                 # SwinIR    (SISRx4)
-python main.py SwinIR jpeg_car-10                                    # SwinIR    (JPEGq10)
+python main.py SwinIR jpeg_car-10                   # SwinIR    (JPEGq10)
 python main.py Restormer gaussian_color_denoising_sigma50            # Restormer (AWGNs50)
-python main.py NLM color_dn-50                                       # NLM       (AWGNs50)
-         
-python main.py Swin2SR compressed_sr-4 \                             # Swin2SR   (SISRx4 + JPEGq10)
+python precomputed_results.py DDRM classical_sr_4_dn_25 imagenet-1k  # DDRM      (SISRx4 + AWGNs25)
+
+# Swin2SR   (SISRx4 + JPEGq10)
+python main.py Swin2SR compressed_sr-4 \
  --natural_image_set ["compressed_sr_swin2sr"] \
  --degraded_set ["compressed_sr_swin2sr"] \
  --quantitative_set ["compressed_sr_swin2sr"] \
  --qualitative_set ["compressed_sr_swin2sr"]
 
-python precomputed_results.py DDRM classical_sr_4_dn_25 imagenet-1k  # DDRM      (SISRx4 + AWGNs25)
+# NLM has a significant memory footprint so we use a batch-size of 1
+export batch_size=1
+export num_workers=0
+python main.py NLM color_dn-50                                       # NLM       (AWGNs50)
 ```

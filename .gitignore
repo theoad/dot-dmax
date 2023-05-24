@@ -1,6 +1,5 @@
 credentials.json
 token.pickle
-dmax/demo.png
 dmax.egg-info
 dmax/data/__pycache__/
 dmax/utils/__pycache__/
@@ -11,3 +10,5 @@ dmax/__pycache__/
 assets/.DS_Store
 dmax/.DS_Store
 dmax/output
+dmax/run.sh
+dmax/demo.png
