@@ -2,7 +2,7 @@
 
 # DOT-Dmax
 
-Official Pytorch implementation of _Deep Optimal Transport: A Practical Algorithm for Photo-realistic Image Restoration_
+Official Pytorch implementation of [_Deep Optimal Transport: A Practical Algorithm for Photo-realistic Image Restoration_](https://arxiv.org/abs/2306.02342)
 
 > We propose an image restoration algorithm that can control the perceptual quality and/or the mean square error (MSE) of any pre-trained model, trading one over the other at test time. Our algorithm is few-shot: Given about a dozen images restored by the model, it can significantly improve the perceptual quality and/or the MSE of the model for newly restored images without further training.
 
