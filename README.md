@@ -119,3 +119,17 @@ export batch_size=1
 export num_workers=0
 python main.py NLM color_dn-50                                       # NLM       (AWGNs50)
 ```
+
+## Citation
+You can cite our work if you found our research useful with the following bibtex entry
+```
+@misc{
+adrai2023deep,
+title={Deep Optimal Transport: A Practical Algorithm for Photo-realistic Image Restoration}, 
+author={Theo Adrai and Guy Ohayon and Tomer Michaeli and Michael Elad},
+year={2023},
+eprint={2306.02342},
+archivePrefix={arXiv},
+primaryClass={cs.AI}
+}
+```
