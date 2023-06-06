@@ -8,11 +8,19 @@ Official Pytorch implementation of [_Deep Optimal Transport: A Practical Algorit
 
 ![Collage](assets/teaser.png)
 
-## Dependencies
+## Install
+### With pip3
+```bash
+pip3 install git+https://github.com/theoad/dot-dmax
+```
+
+### From source
 We used [miniconda3](https://docs.conda.io/en/latest/miniconda.html) and [pip3](https://pip.pypa.io/en/stable/) to manage dependencies
 ```bash
 conda create -n dmax python=3.8
 conda activate dmax
+git clone git+https://github.com/theoad/dot-dmax
+cd dot-dmax
 pip install -e .
 ```
 
@@ -33,7 +41,7 @@ from dmax.models import swinir
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 dmax = LatentW2("stabilityai/sd-vae-ft-ema").to(device)
-model = swinir("classical_sr-4", pretrained=True).to(device)
+model = swinir("classical_sr-4", pretrained=True).to(device)  # <-- replace with any restoration model !
 dataset = iter(load_dataset("imagenet-1k", split="train", streaming=True))
 
 for _ in range(100): # arbitrary resolution & aspect ratios
@@ -58,6 +66,7 @@ collage = torch.cat([resize(y, x.shape[-2:]), x_star, xhat_0, x], dim=-1).to(dev
 save_image(collage, "demo.png", nrow=1, padding=0)
 ```
 ## Paper Results
+The following commands require to first [install from source](#Install-from-source) our code.
 ### PyDrive-API
 Our algorithm enhances existing methods (we tested [SwinIR](https://github.com/JingyunLiang/SwinIR), [Swin2SR](https://github.com/mv-lab/swin2sr), [Restormer](https://github.com/swz30/Restormer), [ESRGAN](https://github.com/xinntao/ESRGAN) and [DDRM](https://github.com/bahjat-kawar/ddrm)).
 Instead of imposing on users to download manually third party code, data or weights, we automate everything using google drive's API.
@@ -96,9 +105,9 @@ cd dmax                                                              # we must r
 python main.py --help                                                # displays all optional arguments
 ```
 ```bash
-# export imagenet_path=~/data/ImageNet                               # ---> replace with your path
-# export batch_size=10                                               # ---> replace with you batch size
-# export num_workers=10                                              # ---> replace with your number of workers
+# export imagenet_path=~/data/ImageNet                               # <-- replace with your path
+# export batch_size=10                                               # <-- replace with you batch size
+# export num_workers=10                                              # <-- replace with your number of workers
 # NB: Replace `python` with `accelerate launch` for distributed run
 
 python main.py ESRGAN classical_sr-4                                 # ESRGAN    (SISRx4)
