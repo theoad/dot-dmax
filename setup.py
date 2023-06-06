@@ -16,7 +16,7 @@ setup(
     long_description_content_type="text/markdown",
     author='Theo J. Adrai',
     author_email='tjtadrai@gmail.com',
-    url='https://github.com/theoad/dmax',
+    url='https://github.com/theoad/dot-dmax',
     install_requires=requirements,
     packages=find_packages(),
     classifiers=[
