@@ -9,12 +9,6 @@ Official Pytorch implementation of [_Deep Optimal Transport: A Practical Algorit
 ![Collage](assets/teaser.png)
 
 ## Install
-### With pip3
-```bash
-pip3 install git+https://github.com/theoad/dot-dmax
-```
-
-### From source
 We used [miniconda3](https://docs.conda.io/en/latest/miniconda.html) and [pip3](https://pip.pypa.io/en/stable/) to manage dependencies
 ```bash
 conda create -n dmax python=3.8
@@ -66,7 +60,6 @@ collage = torch.cat([resize(y, x.shape[-2:]), x_star, xhat_0, x], dim=-1).to(dev
 save_image(collage, "demo.png", nrow=1, padding=0)
 ```
 ## Paper Results
-The following commands require to first [install from source](#Install-from-source) our code.
 ### PyDrive-API
 Our algorithm enhances existing methods (we tested [SwinIR](https://github.com/JingyunLiang/SwinIR), [Swin2SR](https://github.com/mv-lab/swin2sr), [Restormer](https://github.com/swz30/Restormer), [ESRGAN](https://github.com/xinntao/ESRGAN) and [DDRM](https://github.com/bahjat-kawar/ddrm)).
 Instead of imposing on users to download manually third party code, data or weights, we automate everything using google drive's API.
