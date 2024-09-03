@@ -2,7 +2,7 @@
 
 # DOT-Dmax
 
-Official Pytorch implementation of [_Deep Optimal Transport: A Practical Algorithm for Photo-realistic Image Restoration_](https://arxiv.org/abs/2306.02342)
+Official Pytorch implementation of [_Deep Optimal Transport: A Practical Algorithm for Photo-realistic Image Restoration_](https://proceedings.neurips.cc/paper_files/paper/2023/hash/c281c5a17ad2e55e1ac1ca825071f991-Abstract-Conference.html)
 
 > We propose an image restoration algorithm that can control the perceptual quality and/or the mean square error (MSE) of any pre-trained model, trading one over the other at test time. Our algorithm is few-shot: Given about a dozen images restored by the model, it can significantly improve the perceptual quality and/or the MSE of the model for newly restored images without further training.
 
@@ -125,13 +125,15 @@ python main.py NLM color_dn-50                                       # NLM      
 ## Citation
 You can cite our work if you found our research useful with the following bibtex entry
 ```
-@misc{
-adrai2023deep,
-title={Deep Optimal Transport: A Practical Algorithm for Photo-realistic Image Restoration}, 
-author={Theo Adrai and Guy Ohayon and Tomer Michaeli and Michael Elad},
-year={2023},
-eprint={2306.02342},
-archivePrefix={arXiv},
-primaryClass={cs.AI}
+@inproceedings{NEURIPS2023_c281c5a1,
+ author = {Adrai, Theo and Ohayon, Guy and Elad, Michael and Michaeli, Tomer},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine},
+ pages = {61777--61791},
+ publisher = {Curran Associates, Inc.},
+ title = {Deep Optimal Transport: A Practical Algorithm for Photo-realistic Image Restoration},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2023/file/c281c5a17ad2e55e1ac1ca825071f991-Paper-Conference.pdf},
+ volume = {36},
+ year = {2023}
 }
 ```
